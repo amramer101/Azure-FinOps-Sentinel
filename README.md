@@ -29,7 +29,7 @@ Azure FinOps Sentinel is an Azure Function–based solution that continuously sc
 4. Save report to Azure Blob Storage  
 5. If waste detected → HTTP POST to Logic App → Email notification  
 
-*(See `docs/architecture-diagram.png` for a visual overview.)*
+*(See `bd681a09-3742-41d1-8cff-6ef3b302d898.png` for a visual overview.)*
 
 ## ⚙️ Prerequisites
 
