@@ -1,14 +1,14 @@
-Azure FinOps Sentinel
+# Azure FinOps Sentinel
 
-Automated cost-optimization guard for your Azure subscription.
+**Automated cost-optimization guard for your Azure subscription.**
 
 ## 🚀 Overview
 
 Azure FinOps Sentinel is an Azure Function–based solution that continuously scans your subscription for idle or orphaned resources, generates detailed HTML reports, and sends proactive email notifications via Azure Logic Apps. It leverages managed identities for secure access and runs on a timer trigger to ensure 24/7 cost governance.
 
-🔑 Key Features
+## 🔑 Key Features
 
-- Automated Waste Detection  
+- **Automated Waste Detection**  
   - Identifies VMs with average CPU utilization < 10% over 7 days  
   - Finds unattached managed disks and unassociated public IPs  
 - **Proactive Tagging**  
@@ -29,7 +29,7 @@ Azure FinOps Sentinel is an Azure Function–based solution that continuously sc
 4. Save report to Azure Blob Storage  
 5. If waste detected → HTTP POST to Logic App → Email notification  
 
-*(See `bd681a09-3742-41d1-8cff-6ef3b302d898.png` for a visual overview.)*
+*(See `docs/architecture-diagram.png` for a visual overview.)*
 
 ## ⚙️ Prerequisites
 
