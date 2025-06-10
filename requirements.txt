@@ -1,0 +1,9 @@
+azure-functions
+azure-identity
+azure-mgmt-compute
+azure-mgmt-network
+azure-mgmt-resource
+azure-mgmt-monitor
+pandas
+requests
+azure-storage-blob
