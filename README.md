@@ -1,61 +1,41 @@
 Azure FinOps Sentinel
 💡 Overview
-Azure FinOps Sentinel is an automated, serverless solution designed to help organizations and individuals optimize their Azure cloud spending by proactively identifying and managing neglected or underutilized resources. Built as an Azure Function, this tool continuously monitors your Azure subscription for potential cost-saving opportunities, provides actionable insights, and automates reporting and notifications.
+Azure FinOps Sentinel is an automated, serverless solution for optimizing Azure cloud spending. It proactively identifies and manages neglected or underutilized resources to prevent budget waste. Built as an Azure Function, it continuously monitors your subscription, provides actionable insights, and automates reporting.
 
 The Problem It Solves: Cloud Waste
-In dynamic cloud environments, it's easy for resources to become orphaned or idle, consuming budget without providing value. Common culprits include:
-
-Idle Virtual Machines: VMs left running 24/7 with minimal CPU utilization.
-
-Unattached Disks: Managed disks that are no longer connected to any VM.
-
-Unassociated Public IPs: Public IP addresses consuming costs without being linked to an active resource.
-
-Azure FinOps Sentinel addresses this by providing automated detection, tagging, and reporting, ensuring you maintain a lean and cost-efficient cloud footprint.
+Cloud environments often incur unnecessary costs from idle VMs, unattached disks, and unassociated public IPs. FinOps Sentinel addresses this by automating detection, tagging, and reporting, ensuring a lean and cost-efficient cloud presence.
 
 ✨ Features
-Automated Resource Scanning: Periodically scans your Azure subscription for various types of wasted resources.
+Automated Resource Scanning: Periodically scans your Azure subscription for various wasted resource types.
 
-Intelligent Waste Detection:
+Intelligent Waste Detection: Identifies idle VMs (based on CPU thresholds), unattached managed disks, and unassociated public IPs.
 
-Identifies idle Virtual Machines based on configurable average CPU utilization thresholds over a defined period (e.g., <10% CPU over 7 days).
+Automated Tagging: Applies FinOps-Status: Waste-Candidate-* tags for easy tracking and review.
 
-Detects unattached Managed Disks.
+Professional HTML Reports: Generates comprehensive HTML reports summarizing all discovered waste.
 
-Finds unassociated Public IP Addresses.
+Blob Storage Integration: Automatically saves reports to Azure Blob Storage for historical tracking.
 
-Automated Tagging: Applies a FinOps-Status: Waste-Candidate-* tag to identified resources, making them easy to track and review.
+Automated Email Notifications: Triggers Azure Logic Apps to email detailed reports to administrators.
 
-Professional HTML Reports: Generates a comprehensive and well-formatted HTML report summarizing all discovered wasted resources.
+Secure Authentication: Uses Azure Managed Identity for secure, credential-less resource access.
 
-Blob Storage Integration: Automatically saves the generated HTML reports to an Azure Blob Storage container for historical tracking and easy access.
-
-Automated Email Notifications: Triggers an Azure Logic App to send email notifications with the detailed HTML report to designated administrators.
-
-Secure Authentication: Leverages Azure Managed Identity for secure and credential-less access to Azure resources.
-
-Serverless & Cost-Efficient: Runs as an Azure Function, providing a highly scalable and cost-effective solution.
+Serverless & Cost-Efficient: Runs as a scalable, cost-effective Azure Function.
 
 ⚙️ How It Works (Architecture Overview)
 Azure FinOps Sentinel operates as a streamlined FinOps pipeline:
 
-Timer Trigger: An Azure Function (written in Python) is configured to run on a recurring schedule (e.g., every 6 hours).
+Timer Trigger: Python Azure Function runs on a recurring schedule (e.g., every 6 hours).
 
-Resource Discovery: The Function authenticates using Managed Identity and utilizes Azure SDKs to query:
+Resource Discovery: Function authenticates via Managed Identity; queries Azure Compute (VMs, Disks), Monitor (VM CPU), and Networking (Public IPs).
 
-Azure Compute: To list VMs and Disks.
+Waste Identification & Tagging: Identifies idle VMs, unattached disks, and unassociated IPs, then applies FinOps-Status tags.
 
-Azure Monitor: To retrieve CPU metrics for running VMs.
+Report Generation: Dynamically generates professional HTML reports of identified waste.
 
-Azure Networking: To list Public IP Addresses.
+Storage: HTML reports are securely uploaded to an Azure Blob Storage container.
 
-Waste Identification & Tagging: Based on predefined criteria, the Function identifies idle VMs, unattached disks, and unassociated IPs. It then applies appropriate FinOps-Status tags to these resources.
-
-Report Generation: A professional HTML report is dynamically generated, summarizing all identified waste.
-
-Storage: The HTML report is securely uploaded and stored in an Azure Blob Storage container.
-
-Notification: If wasted resources are found, the Function triggers an Azure Logic App. The Logic App, configured with a SendGrid (or other email service) connector, sends the HTML report as an email notification to the specified recipient.
+Notification: If wasted resources are found, the Function triggers an Azure Logic App (e.g., via SendGrid) to email HTML reports to specified recipients.
 
 🚀 Getting Started
 Follow these steps to deploy and configure Azure FinOps Sentinel in your Azure subscription.
@@ -196,18 +176,16 @@ Subject: Set a subject like "Azure FinOps Sentinel Report".
 Body (or HTML Content): Crucially, ensure you select body from the "Dynamic content" list (from the HTTP Request trigger). Make sure the email connector's settings explicitly state that the body content is HTML. For SendGrid, this is typically done by setting "html": "@{triggerBody().body}" and "ishtml": true.
 
 🚀 Usage
-Once deployed and configured, the finops_sentinel_function will automatically run based on its timer schedule (0 0 */6 * * * means every 6 hours).
-
-You can also manually trigger the function from the Azure Portal for testing purposes.
+Once deployed and configured, the finops_sentinel_function will automatically run based on its timer schedule (0 0 */6 * * * means every 6 hours). Manual triggers are available via Azure Portal for testing.
 
 Expected Output
-Email Notifications: You will receive a professional, well-formatted HTML report in your inbox (sent to ADMIN_EMAIL) detailing all identified wasted resources.
+Email Notifications: Professional HTML reports detailing waste sent to ADMIN_EMAIL.
 
-Blob Storage Reports: HTML report files will be saved in your designated Blob Storage container (reports).
+Blob Storage Reports: HTML reports saved to the configured Blob Storage container.
 
-Azure Tags: Resources identified as waste candidates will be tagged with FinOps-Status: Waste-Candidate-*.
+Azure Tags: Waste candidates tagged with FinOps-Status: Waste-Candidate-*.
 
-Azure Function Logs: Detailed logs will be available in Azure Monitor / Application Insights, showing the function's execution status, discovered resources, and any errors.
+Azure Function Logs: Detailed execution logs available in Azure Monitor/Application Insights.
 
 🤝 Contributing
 Contributions are welcome! If you have suggestions for improvements, new waste detection patterns, or bug fixes, please open an issue or submit a pull request.
