@@ -41,14 +41,14 @@ It ensures **zero-credential drift** using Managed Identities and provides **rea
 
 ### Architecture Diagram
 
-![Workflow](bd681a09-3742-41d1-8cff-6ef3b302d898.png "Azure FinOps Workflow")
+![Workflow](workflow.png "Azure FinOps Workflow")
 *Figure: Serverless automation and cost optimization workflow*
 
 ---
 
 ### Alerts Screenshot
 
-![Alerts](Screenshot 2025-06-10 210452.png "FinOps Alerts")
+![Alerts](alert.png "FinOps Alerts")
 *Figure: Sample alert showing under-utilized resource detection*
 
 
