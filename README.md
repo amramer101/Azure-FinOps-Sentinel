@@ -49,6 +49,7 @@ It ensures **zero-credential drift** using Managed Identities and provides **rea
 ### Alerts Screenshot
 
 ![Alerts](alert.png "FinOps Alerts")
+
 *Figure: Sample alert showing under-utilized resource detection*
 
 
