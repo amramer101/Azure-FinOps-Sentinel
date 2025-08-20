@@ -4,7 +4,6 @@
 ![Python](https://img.shields.io/badge/Python-DarkBlue?logo=python\&logoColor=white)
 ![Serverless](https://img.shields.io/badge/Serverless-Yes-lightgrey)
 ![Automation](https://img.shields.io/badge/Automation-Enabled-green)
-![Cost Savings](https://img.shields.io/badge/Cost-Saving-98%25-yellowgreen)
 
 ---
 
@@ -18,7 +17,6 @@ It ensures **zero-credential drift** using Managed Identities and provides **rea
 
 ## 🚀 Key Achievements
 
-* 💸 Reduced idle-resource spend by **98%** in pilot environments.
 * 🛠 Developed a **Python Azure Function** that scans every 6 hours for:
 
   * VMs with <10% CPU over 7 days
@@ -45,11 +43,6 @@ It ensures **zero-credential drift** using Managed Identities and provides **rea
 
 ![Workflow](bd681a09-3742-41d1-8cff-6ef3b302d898.png "Azure FinOps Workflow")
 *Figure: Serverless automation and cost optimization workflow*
-
-### Alerts Screenshot
-
-!\[Alerts]\(Screenshot 2025-06-10 210452.png "FinOps Alerts")
-*Figure: Sample alert showing under-utilized resource detection*
 
 ---
 
@@ -98,7 +91,6 @@ func start
 
 ## 📊 Performance Highlights
 
-* ✅ **98% reduction** in idle resource costs
 * ✅ Automated detection and tagging of unused resources
 * ✅ Real-time reporting and notifications
 
